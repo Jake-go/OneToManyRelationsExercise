@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- import bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>View Stores</title>
+</head>
+
+<body>
+
+    <h1>View Stores</h1>
+    <div th:each="st : ${stores}">
+        <h2 th:text="${st.name}"></h2>
+        <span th:text="${ 'Store ID: ' + {st.id}}"></span>
+        <table>
+            <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+            </tr>
+            <tr th:each="em : ${st.employees}">
+                <td th:text="${em.id}"></td>
+                <td th:text="${em.name}"></td>
+            </tr>
+        </table>
+    </div>
+
+
+</body>
+
+</html>
