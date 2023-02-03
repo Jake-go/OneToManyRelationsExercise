@@ -12,24 +12,45 @@
 </head>
 
 <body>
-
-    <h1>View Stores</h1>
-    <div th:each="st : ${stores}">
-        <h2 th:text="${st.name}"></h2>
-        <span th:text="${ 'Store ID: ' + {st.id}}"></span>
-        <table>
-            <tr>
-                <th>Employee ID</th>
-                <th>Employee Name</th>
-            </tr>
-            <tr th:each="em : ${st.employees}">
-                <td th:text="${em.id}"></td>
-                <td th:text="${em.name}"></td>
-            </tr>
-        </table>
+    <div class="container mt-5">
+        <h1 class="text-center">View Stores</h1>
+        <div th:each="st : ${stores}">
+            <h2 th:text="${st.name}" class="mb-3"></h2>
+            <span class="d-block mb-3" th:text="${ 'Store ID: ' + {st.id}}"></span>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="em : ${st.employees}">
+                        <td th:text="${em.id}"></td>
+                        <td th:text="${em.name}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <h3 class="mb-2">Store Games</h2>
+                <span class="d-block mb-3" th:text="${ 'Total Video Games: ' + {st.videogames.size()}}"></span>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="vg : ${st.videogames}">
+                            <td th:text="${vg.title}"></td>
+                            <td th:text="${vg.price}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
     </div>
-
-
+    <br>
 </body>
 
 </html>

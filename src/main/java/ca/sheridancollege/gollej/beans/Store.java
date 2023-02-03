@@ -8,10 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.JoinColumn;
 
@@ -31,5 +33,11 @@ public class Store {
     // mappedBy = "<the field in the other entity>"
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "store")
     private List<Employee> employees;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "store_videogame", 
+    	joinColumns = @JoinColumn(name = "store_id"), 
+    	inverseJoinColumns = @JoinColumn(name = "videogame_id"))
+    private List<Videogame> videogames;
 
 }
